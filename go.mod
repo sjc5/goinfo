@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/go-chi/chi/v5 v5.2.2
-	github.com/river-now/river v0.51.0
+	github.com/river-now/river v0.52.0
 )
 
 require (

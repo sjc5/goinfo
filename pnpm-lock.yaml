@@ -30,8 +30,8 @@ importers:
         specifier: ^3.6.2
         version: 3.6.2
       river.now:
-        specifier: ^0.51.0
-        version: 0.51.0
+        specifier: ^0.52.0
+        version: 0.52.0
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
@@ -1305,8 +1305,8 @@ packages:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  river.now@0.51.0:
-    resolution: {integrity: sha512-yLclReBDDIn7BJ9H2QYsHytlhPgZXEj7E0QKrBauVxegvm0Qr1x7Xey4A3JsP7KVmGIdUVbae/rNxlKoX34p7w==}
+  river.now@0.52.0:
+    resolution: {integrity: sha512-8Gx6sjZqKU8lScH6EUeJmw2ALIO3Nxa6P6N8wnqiHIogr6KX7KEbOq72Dqa4Zvim2+2Z4FzWMEAjGzfhtTiiCw==}
 
   rollup@4.46.2:
     resolution: {integrity: sha512-WMmLFI+Boh6xbop+OAGo9cQ3OgX9MIg7xOQjn+pTCwOkk+FNDAeAemXkJ3HzDJrVXleLOFVa1ipuc1AmEx1Dwg==}
@@ -2620,7 +2620,7 @@ snapshots:
 
   reusify@1.1.0: {}
 
-  river.now@0.51.0: {}
+  river.now@0.52.0: {}
 
   rollup@4.46.2:
     dependencies:
