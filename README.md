@@ -1,7 +1,8 @@
 # Go on Vercel Fluid [experimental]
 
-A demonstration of running Go applications on Vercel's Fluid compute platform,
-displaying real-time Go runtime information.
+This project demonstrates how to run full-stack Go applications on Vercel's
+[Fluid compute](https://vercel.com/fluid) platform. It renders live Go runtime
+information on every page load.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsjc5%2Fgoinfo)
 
@@ -20,8 +21,8 @@ proxy:
 
 - [`api/proxy.ts`](./api/proxy.ts) - Node.js proxy that manages the Go process
   lifecycle
-- [`backend/router/goinfo.go`](./backend/router/goinfo.go) - Collects real-time
-  Go runtime metrics
+- [`backend/router/goinfo.go`](./backend/router/goinfo.go) - Collects live Go
+  runtime metrics
 - [`frontend/home.tsx`](./frontend/home.tsx) - Frontend that displays the
   runtime information
 - [`vercel.json`](./vercel.json) - Vercel configuration that routes all requests
@@ -29,7 +30,7 @@ proxy:
 
 ## Features
 
-- **Real-time Go runtime metrics**: Version, OS, architecture, CPU cores
+- **Live Go runtime metrics**: Version, OS, architecture, CPU cores
 - **Memory statistics**: Heap, stack, and system memory usage
 - **Garbage collector stats**: GC runs, pause times, CPU fraction
 - **Environment variables**: Go-specific environment configuration
