@@ -173,12 +173,20 @@ export function Home(props: RouteProps<"/_index">) {
 											{goInfo.NumCPU}
 										</td>
 									</tr>
-									<tr>
+									<tr className="border-b border-gray-200">
 										<td className="px-3 py-1.5 bg-gray-100 font-medium text-gray-700">
 											GOMAXPROCS
 										</td>
 										<td className="px-3 py-1.5 text-gray-900">
 											{goInfo.GOMAXPROCS}
+										</td>
+									</tr>
+									<tr>
+										<td className="px-3 py-1.5 bg-gray-100 font-medium text-gray-700">
+											Function Instance ID
+										</td>
+										<td className="px-3 py-1.5 text-gray-900">
+											{goInfo.FunctionInstanceID}
 										</td>
 									</tr>
 								</tbody>

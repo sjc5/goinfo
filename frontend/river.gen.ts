@@ -34,6 +34,7 @@ export type GoInfo = {
 	Env: Record<string, string>;
 	Build: BuildInfo;
 	MemStats: MemoryStats;
+	FunctionInstanceID: string;
 };
 
 export type MemoryStats = {

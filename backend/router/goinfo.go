@@ -4,18 +4,27 @@ import (
 	"os"
 	"runtime"
 	"runtime/debug"
+
+	"github.com/river-now/river/kit/id"
 )
+
+var FunctionInstanceID string
+
+func init() {
+	FunctionInstanceID, _ = id.New(24)
+}
 
 // GoInfo represents comprehensive Go runtime information
 type GoInfo struct {
-	GoVersion  string            `json:"GoVersion"`
-	GOOS       string            `json:"GOOS"`
-	GOARCH     string            `json:"GOARCH"`
-	NumCPU     int               `json:"NumCPU"`
-	GOMAXPROCS int               `json:"GOMAXPROCS"`
-	Env        map[string]string `json:"Env"`
-	Build      BuildInfo         `json:"Build"`
-	MemStats   MemoryStats       `json:"MemStats"`
+	GoVersion          string            `json:"GoVersion"`
+	GOOS               string            `json:"GOOS"`
+	GOARCH             string            `json:"GOARCH"`
+	NumCPU             int               `json:"NumCPU"`
+	GOMAXPROCS         int               `json:"GOMAXPROCS"`
+	Env                map[string]string `json:"Env"`
+	Build              BuildInfo         `json:"Build"`
+	MemStats           MemoryStats       `json:"MemStats"`
+	FunctionInstanceID string            `json:"FunctionInstanceID"`
 }
 
 // BuildInfo contains build and dependency information
@@ -83,14 +92,15 @@ var _ = NewLoader("/_index", func(c *LoaderCtx) (*GoInfo, error) {
 // collectGoInfo gathers comprehensive runtime information
 func collectGoInfo() *GoInfo {
 	info := &GoInfo{
-		GoVersion:  runtime.Version(),
-		GOOS:       runtime.GOOS,
-		GOARCH:     runtime.GOARCH,
-		NumCPU:     runtime.NumCPU(),
-		GOMAXPROCS: runtime.GOMAXPROCS(0),
-		Env:        collectGoEnv(),
-		Build:      collectBuildInfo(),
-		MemStats:   collectMemStats(),
+		GoVersion:          runtime.Version(),
+		GOOS:               runtime.GOOS,
+		GOARCH:             runtime.GOARCH,
+		NumCPU:             runtime.NumCPU(),
+		GOMAXPROCS:         runtime.GOMAXPROCS(0),
+		Env:                collectGoEnv(),
+		Build:              collectBuildInfo(),
+		MemStats:           collectMemStats(),
+		FunctionInstanceID: FunctionInstanceID,
 	}
 
 	return info
