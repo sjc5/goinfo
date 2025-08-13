@@ -16,72 +16,72 @@ func init() {
 
 // GoInfo represents comprehensive Go runtime information
 type GoInfo struct {
-	GoVersion          string            `json:"GoVersion"`
-	GOOS               string            `json:"GOOS"`
-	GOARCH             string            `json:"GOARCH"`
-	NumCPU             int               `json:"NumCPU"`
-	GOMAXPROCS         int               `json:"GOMAXPROCS"`
-	Env                map[string]string `json:"Env"`
-	Build              BuildInfo         `json:"Build"`
-	MemStats           MemoryStats       `json:"MemStats"`
-	FunctionInstanceID string            `json:"FunctionInstanceID"`
+	GoVersion          string
+	GOOS               string
+	GOARCH             string
+	NumCPU             int
+	GOMAXPROCS         int
+	Env                map[string]string
+	Build              BuildInfo
+	MemStats           MemoryStats
+	FunctionInstanceID string
 }
 
 // BuildInfo contains build and dependency information
 type BuildInfo struct {
-	Path string   `json:"Path"`
-	Main Module   `json:"Main"`
-	Deps []Module `json:"Deps"`
+	Path string
+	Main Module
+	Deps []Module
 }
 
 // Module represents a Go module
 type Module struct {
-	Path    string  `json:"Path"`
-	Version string  `json:"Version"`
-	Sum     string  `json:"Sum"`
-	Replace *Module `json:"Replace"`
+	Path    string
+	Version string
+	Sum     string
+	Replace *Module
 }
 
 // MemoryStats contains memory and GC statistics
 type MemoryStats struct {
 	// General statistics
-	Alloc      uint64 `json:"Alloc"`
-	TotalAlloc uint64 `json:"TotalAlloc"`
-	Sys        uint64 `json:"Sys"`
-	Lookups    uint64 `json:"Lookups"`
-	Mallocs    uint64 `json:"Mallocs"`
-	Frees      uint64 `json:"Frees"`
+	Alloc      uint64
+	TotalAlloc uint64
+	Sys        uint64
+	Lookups    uint64
+	Mallocs    uint64
+	Frees      uint64
 
 	// Heap statistics
-	HeapAlloc    uint64 `json:"HeapAlloc"`
-	HeapSys      uint64 `json:"HeapSys"`
-	HeapIdle     uint64 `json:"HeapIdle"`
-	HeapInuse    uint64 `json:"HeapInuse"`
-	HeapReleased uint64 `json:"HeapReleased"`
-	HeapObjects  uint64 `json:"HeapObjects"`
+	HeapAlloc    uint64
+	HeapSys      uint64
+	HeapIdle     uint64
+	HeapInuse    uint64
+	HeapReleased uint64
+	HeapObjects  uint64
 
 	// Stack and other memory
-	StackInuse  uint64 `json:"StackInuse"`
-	StackSys    uint64 `json:"StackSys"`
-	MSpanInuse  uint64 `json:"MSpanInuse"`
-	MSpanSys    uint64 `json:"MSpanSys"`
-	MCacheInuse uint64 `json:"MCacheInuse"`
-	MCacheSys   uint64 `json:"MCacheSys"`
-	BuckHashSys uint64 `json:"BuckHashSys"`
-	GCSys       uint64 `json:"GCSys"`
-	OtherSys    uint64 `json:"OtherSys"`
+	StackInuse  uint64
+	StackSys    uint64
+	MSpanInuse  uint64
+	MSpanSys    uint64
+	MCacheInuse uint64
+	MCacheSys   uint64
+	BuckHashSys uint64
+	GCSys       uint64
+	OtherSys    uint64
 
 	// GC statistics
-	NextGC        uint64   `json:"NextGC"`
-	LastGC        uint64   `json:"LastGC"`
-	PauseTotalNs  uint64   `json:"PauseTotalNs"`
-	PauseNs       []uint64 `json:"PauseNs"`
-	PauseEnd      []uint64 `json:"PauseEnd"`
-	NumGC         uint32   `json:"NumGC"`
-	NumForcedGC   uint32   `json:"NumForcedGC"`
-	GCCPUFraction float64  `json:"GCCPUFraction"`
-	EnableGC      bool     `json:"EnableGC"`
-	DebugGC       bool     `json:"DebugGC"`
+	NextGC        uint64
+	LastGC        uint64
+	PauseTotalNs  uint64
+	PauseNs       []uint64
+	PauseEnd      []uint64
+	NumGC         uint32
+	NumForcedGC   uint32
+	GCCPUFraction float64
+	EnableGC      bool
+	DebugGC       bool
 }
 
 // Register the Go info loader
