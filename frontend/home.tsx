@@ -1,22 +1,5 @@
 import { useLoaderData, type RouteProps } from "./app_utils.ts";
 
-function formatBytes(bytes: number) {
-	if (bytes === 0) return "0 B";
-	const k = 1024;
-	const sizes = ["B", "KB", "MB", "GB"];
-	const i = Math.floor(Math.log(bytes) / Math.log(k));
-	return (
-		Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
-	);
-}
-
-function formatNanoseconds(ns: number) {
-	if (ns < 1000) return ns + " ns";
-	if (ns < 1000000) return (ns / 1000).toFixed(2) + " μs";
-	if (ns < 1000000000) return (ns / 1000000).toFixed(2) + " ms";
-	return (ns / 1000000000).toFixed(2) + " s";
-}
-
 export function Home(props: RouteProps<"/_index">) {
 	const goInfo = useLoaderData(props);
 
@@ -24,7 +7,27 @@ export function Home(props: RouteProps<"/_index">) {
 	const hasEnvVars = envEntries.length > 0;
 
 	return (
-		<div className="min-h-screen bg-white font-mono">
+		<div className="min-h-screen bg-white font-mono relative">
+			<div className="absolute top-4 right-4">
+				<a
+					href="https://github.com/sjc5/goinfo"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="flex items-center gap-1 text-gray-500 hover:text-gray-700 transition-colors text-xs"
+				>
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+					</svg>
+					<span>source</span>
+				</a>
+			</div>
+
 			<div className="max-w-4xl mx-auto px-6 py-4">
 				{/* Header with logos */}
 				<div className="text-center mb-0.5">
@@ -82,44 +85,44 @@ export function Home(props: RouteProps<"/_index">) {
 						<span className="text-gray-500 text-sm">
 							Powered by
 						</span>
-						<svg
-							width="20"
-							height="20"
-							viewBox="0 0 196 196"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							className="text-gray-600"
-						>
-							<g clipPath="url(#clip0_3776_3941)">
-								<path
-									d="M85.75 24.5H110.25V0H128.625V24.5H159.25C166.015 24.5 171.5 29.9845 171.5 36.75V67.375H196V85.75H171.5V110.25H196V128.625H171.5V159.25C171.5 165.91 166.186 171.328 159.566 171.496L159.25 171.5H128.625V196H110.25V171.5H85.75V196H67.375V171.5H36.75L36.4336 171.496C29.9195 171.331 24.6691 166.081 24.5039 159.566L24.5 159.25V128.625H0V110.25H24.5V85.75H0V67.375H24.5V36.75C24.5 29.9845 29.9845 24.5 36.75 24.5H67.375V0H85.75V24.5ZM90.5029 94.8457C86.5615 97.6177 83.1197 100.863 79.7314 104.377C75.1938 109.083 69.7904 115.423 64.0049 119.965C58.3084 124.437 51.5389 127.851 42.875 128.508V153.125H153.125V128.625H122.501C112.565 128.625 104.338 125.077 98.6211 119.074C93.0187 113.192 90.3447 105.496 90.3447 98C90.3447 96.9506 90.3974 95.8974 90.5029 94.8457ZM42.875 110.031C46.5573 109.486 49.5804 107.928 52.6582 105.512C57.1125 102.015 60.7061 97.6356 66.5039 91.623C71.9358 85.9899 78.5966 79.7937 87.7148 75.0947C96.9202 70.351 108.143 67.375 122.501 67.375V85.75C117.125 85.75 113.866 87.5619 111.927 89.5977C109.873 91.7542 108.72 94.7772 108.72 98C108.72 101.223 109.873 104.246 111.927 106.402C113.866 108.438 117.125 110.25 122.501 110.25H153.125V42.875H42.875V110.031Z"
-									fill="#6B7280"
-								/>
-							</g>
-							<defs>
-								<clipPath id="clip0_3776_3941">
-									<rect
-										width="196"
-										height="196"
-										fill="white"
-									/>
-								</clipPath>
-							</defs>
-						</svg>
 						<a
 							href="https://vercel.com/fluid"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-gray-500 text-sm hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500"
+							className="flex items-center gap-1 text-gray-500 hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500 pb-0.5"
 						>
-							Fluid compute
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 196 196"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								className="transition-colors"
+							>
+								<g clip-path="url(#clip0_3776_3941)">
+									<path
+										d="M85.75 24.5H110.25V0H128.625V24.5H159.25C166.015 24.5 171.5 29.9845 171.5 36.75V67.375H196V85.75H171.5V110.25H196V128.625H171.5V159.25C171.5 165.91 166.186 171.328 159.566 171.496L159.25 171.5H128.625V196H110.25V171.5H85.75V196H67.375V171.5H36.75L36.4336 171.496C29.9195 171.331 24.6691 166.081 24.5039 159.566L24.5 159.25V128.625H0V110.25H24.5V85.75H0V67.375H24.5V36.75C24.5 29.9845 29.9845 24.5 36.75 24.5H67.375V0H85.75V24.5ZM90.5029 94.8457C86.5615 97.6177 83.1197 100.863 79.7314 104.377C75.1938 109.083 69.7904 115.423 64.0049 119.965C58.3084 124.437 51.5389 127.851 42.875 128.508V153.125H153.125V128.625H122.501C112.565 128.625 104.338 125.077 98.6211 119.074C93.0187 113.192 90.3447 105.496 90.3447 98C90.3447 96.9506 90.3974 95.8974 90.5029 94.8457ZM42.875 110.031C46.5573 109.486 49.5804 107.928 52.6582 105.512C57.1125 102.015 60.7061 97.6356 66.5039 91.623C71.9358 85.9899 78.5966 79.7937 87.7148 75.0947C96.9202 70.351 108.143 67.375 122.501 67.375V85.75C117.125 85.75 113.866 87.5619 111.927 89.5977C109.873 91.7542 108.72 94.7772 108.72 98C108.72 101.223 109.873 104.246 111.927 106.402C113.866 108.438 117.125 110.25 122.501 110.25H153.125V42.875H42.875V110.031Z"
+										fill="currentColor"
+									/>
+								</g>
+								<defs>
+									<clipPath id="clip0_3776_3941">
+										<rect
+											width="196"
+											height="196"
+											fill="white"
+										/>
+									</clipPath>
+								</defs>
+							</svg>
+							<span className="text-sm">Fluid compute</span>
 						</a>
 						<span className="text-gray-500 text-sm">&amp;</span>
 						<a
 							href="https://river.now/"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-gray-500 text-sm hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500"
+							className="text-gray-500 text-sm hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500 pb-0.5"
 						>
 							River
 						</a>
@@ -412,4 +415,21 @@ export function Home(props: RouteProps<"/_index">) {
 			</div>
 		</div>
 	);
+}
+
+function formatBytes(bytes: number) {
+	if (bytes === 0) return "0 B";
+	const k = 1024;
+	const sizes = ["B", "KB", "MB", "GB"];
+	const i = Math.floor(Math.log(bytes) / Math.log(k));
+	return (
+		Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+	);
+}
+
+function formatNanoseconds(ns: number) {
+	if (ns < 1000) return ns + " ns";
+	if (ns < 1000000) return (ns / 1000).toFixed(2) + " μs";
+	if (ns < 1000000000) return (ns / 1000000).toFixed(2) + " ms";
+	return (ns / 1000000000).toFixed(2) + " s";
 }
