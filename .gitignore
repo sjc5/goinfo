@@ -1,0 +1,13 @@
+# Node
+node_modules
+
+# Wave
+app/__dist/static/*
+!app/__dist/static/.keep
+app/__dist/main*
+
+# Vercel
+.vercel
+
+# IDE
+.vscode

@@ -1,0 +1,28 @@
+{
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "go run ./__cmd/build --dev",
+		"build": "go run ./__cmd/build",
+		"vercel-install-go": "curl -L https://go.dev/dl/go1.24.0.linux-amd64.tar.gz | tar -C /tmp -xz",
+		"vercel-install": "pnpm vercel-install-go && export PATH=/tmp/go/bin:$PATH && pnpm install",
+		"vercel-build": "export PATH=/tmp/go/bin:$PATH && go run ./__cmd/build"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.10.2",
+		"@preact/signals": "^2.2.1",
+		"@tailwindcss/vite": "^4.1.11",
+		"@types/node": "^24.2.1",
+		"@vercel/node": "^5.3.11",
+		"preact": "^10.27.0",
+		"prettier": "^3.6.2",
+		"river.now": "^0.50.0",
+		"tailwindcss": "^4.1.11",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.2"
+	},
+	"prettier": {
+		"useTabs": true,
+		"tabWidth": 4
+	}
+}
