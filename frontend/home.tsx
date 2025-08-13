@@ -106,9 +106,23 @@ export function Home(props: RouteProps<"/_index">) {
 								</clipPath>
 							</defs>
 						</svg>
-						<span className="text-gray-500 text-sm">
+						<a
+							href="https://vercel.com/fluid"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-gray-500 text-sm hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500"
+						>
 							Fluid compute
-						</span>
+						</a>
+						<span className="text-gray-500 text-sm">&amp;</span>
+						<a
+							href="https://river.now/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-gray-500 text-sm hover:text-gray-700 transition-colors border-b border-gray-300 hover:border-gray-500"
+						>
+							River
+						</a>
 					</div>
 				</div>
 
