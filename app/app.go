@@ -36,7 +36,7 @@ var River = &river.River{
 		favURL := Wave.GetPublicURL("favicon.ico")
 
 		if !wave.GetIsDev() {
-			ogImgURL = path.Join(Origin, ogImgURL)
+			ogImgURL = "https://" + path.Join(Domain, ogImgURL)
 		}
 
 		e := river.NewHeadEls()
