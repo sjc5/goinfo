@@ -14,7 +14,6 @@ import (
 
 const (
 	Domain          = "goinfo.vercel.app"
-	Origin          = "https://" + Domain
 	SiteTitle       = "Vercel + Go"
 	SiteDescription = "Vercel + Go | Powered by Fluid compute"
 )
@@ -30,7 +29,7 @@ var River = &river.River{
 		return e
 	},
 	GetDefaultHeadEls: func(r *http.Request) ([]*htmlutil.Element, error) {
-		currentURL := path.Join(Origin, r.URL.Path)
+		currentURL := "https://" + path.Join(Domain, r.URL.Path)
 
 		ogImgURL := Wave.GetPublicURL("og.webp")
 		favURL := Wave.GetPublicURL("favicon.ico")
