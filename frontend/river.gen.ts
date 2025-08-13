@@ -145,7 +145,10 @@ const rollupOptions = {
 	},
 } as const;
 
-export const staticPublicAssetMap = {} as const;
+export const staticPublicAssetMap = {
+	"favicon.ico": "river_out_favicon_6d03f1716435.ico",
+	"og.webp": "river_out_og_66618cb67d34.webp"
+} as const;
 
 export type StaticPublicAsset = keyof typeof staticPublicAssetMap;
 

@@ -3,12 +3,20 @@ package app
 import (
 	"embed"
 	"net/http"
+	"path"
 
 	"github.com/river-now/river"
 	"github.com/river-now/river/kit/colorlog"
 	"github.com/river-now/river/kit/headels"
 	"github.com/river-now/river/kit/htmlutil"
 	"github.com/river-now/river/wave"
+)
+
+const (
+	Domain          = "goinfo.vercel.app"
+	Origin          = "https://" + Domain
+	SiteTitle       = "Vercel + Go"
+	SiteDescription = "Vercel + Go | Powered by Fluid compute"
 )
 
 var River = &river.River{
@@ -22,10 +30,30 @@ var River = &river.River{
 		return e
 	},
 	GetDefaultHeadEls: func(r *http.Request) ([]*htmlutil.Element, error) {
+		currentURL := path.Join(Origin, r.URL.Path)
+
+		ogImgURL := Wave.GetPublicURL("og.webp")
+		favURL := Wave.GetPublicURL("favicon.ico")
+
+		if !wave.GetIsDev() {
+			ogImgURL = path.Join(Origin, ogImgURL)
+		}
+
 		e := river.NewHeadEls()
 
-		e.Title("River Example")
-		e.Description("This is a River example.")
+		e.Title(SiteTitle)
+		e.Description(SiteDescription)
+
+		e.Meta(e.Property("og:title"), e.Content(SiteTitle))
+		e.Meta(e.Property("og:description"), e.Content(SiteDescription))
+		e.Meta(e.Property("og:type"), e.Content("website"))
+		e.Meta(e.Property("og:image"), e.Content(ogImgURL))
+		e.Meta(e.Property("og:url"), e.Content(currentURL))
+
+		e.Meta(e.Name("twitter:card"), e.Content("summary_large_image"))
+		e.Meta(e.Name("twitter:site"), e.Content("@vercel"))
+
+		e.Link(e.Rel("icon"), e.Attr("href", favURL), e.Attr("type", "image/x-icon"))
 
 		return e.Collect(), nil
 	},
