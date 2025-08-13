@@ -20,6 +20,9 @@ function formatNanoseconds(ns: number) {
 export function Home(props: RouteProps<"/_index">) {
 	const goInfo = useLoaderData(props);
 
+	const envEntries = Object.entries(goInfo.Env || {});
+	const hasEnvVars = envEntries.length > 0;
+
 	return (
 		<div className="min-h-screen bg-white font-mono">
 			<div className="max-w-4xl mx-auto px-6 py-4">
@@ -167,41 +170,41 @@ export function Home(props: RouteProps<"/_index">) {
 					</div>
 
 					{/* Environment Variables */}
-					<div className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
-						<div className="bg-gray-800 text-white px-3 py-1.5">
-							<h2 className="text-sm font-semibold">
-								Environment Variables
-							</h2>
+					{hasEnvVars && (
+						<div className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+							<div className="bg-gray-800 text-white px-3 py-1.5">
+								<h2 className="text-sm font-semibold">
+									Environment Variables
+								</h2>
+							</div>
+							<div className="overflow-x-auto">
+								<table className="w-full text-xs">
+									<tbody>
+										{envEntries.map(
+											([key, value], index) => (
+												<tr
+													key={key}
+													className={
+														index <
+														envEntries.length - 1
+															? "border-b border-gray-200"
+															: ""
+													}
+												>
+													<td className="px-3 py-1.5 bg-gray-100 font-medium text-gray-700 w-1/3">
+														{key}
+													</td>
+													<td className="px-3 py-1.5 text-gray-900 text-xs break-all">
+														{value}
+													</td>
+												</tr>
+											),
+										)}
+									</tbody>
+								</table>
+							</div>
 						</div>
-						<div className="overflow-x-auto">
-							<table className="w-full text-xs">
-								<tbody>
-									{Object.entries(goInfo.Env).map(
-										([key, value], index) => (
-											<tr
-												key={key}
-												className={
-													index <
-													Object.entries(goInfo.Env)
-														.length -
-														1
-														? "border-b border-gray-200"
-														: ""
-												}
-											>
-												<td className="px-3 py-1.5 bg-gray-100 font-medium text-gray-700 w-1/3">
-													{key}
-												</td>
-												<td className="px-3 py-1.5 text-gray-900 text-xs break-all">
-													{value}
-												</td>
-											</tr>
-										),
-									)}
-								</tbody>
-							</table>
-						</div>
-					</div>
+					)}
 
 					{/* Memory Statistics */}
 					<div className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
@@ -331,10 +334,12 @@ export function Home(props: RouteProps<"/_index">) {
 											Last GC
 										</td>
 										<td className="px-3 py-1.5 text-gray-900">
-											{new Date(
-												goInfo.MemStats.LastGC /
-													1000000,
-											).toLocaleString()}
+											{goInfo.MemStats.LastGC > 0
+												? new Date(
+														goInfo.MemStats.LastGC /
+															1000000,
+													).toLocaleString()
+												: "Not yet run"}
 										</td>
 									</tr>
 									<tr className="border-b border-gray-200">
